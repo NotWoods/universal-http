@@ -1,13 +1,20 @@
 {
   "name": "universal-http",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Share server handlers between Node, Deno, Service Workers, Edge functions, and more!",
   "main": "src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./types/index.js"
+    }
+  },
   "type": "module",
   "engines": {
     "node": ">=18.11.0"
   },
   "scripts": {
+    "check": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -15,10 +22,14 @@
     "fetch",
     "undici",
     "request",
+    "response",
     "incomingmessage",
     "outgoingmessage",
     "whatwg",
-    "response"
+    "serverresponse",
+    "convert",
+    "serviceworker",
+    "deno"
   ],
   "author": "Tiger Oakes",
   "license": "MIT",

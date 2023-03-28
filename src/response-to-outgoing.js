@@ -1,3 +1,4 @@
+import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
 
 /**
@@ -11,7 +12,7 @@ export async function convertResponseToOutgoingMessage(response, outgoing) {
   });
   outgoing.writeHead(response.status, response.statusText);
   if (response.body) {
-    await pipeline(response.body, outgoing);
+    await pipeline(Readable.fromWeb(response.body), outgoing);
   } else {
     await new Promise(
       /** @param {(_: void) => void} resolve */
